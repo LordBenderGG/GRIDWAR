@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIDWAR — Guerra de Cuadrículas en Tiempo Real</title>
+    <meta name="description" content="GRIDWAR es el juego de Tres en Raya en tiempo real más intenso jamás creado. Multijugador online, comodines únicos y sistema de clasificación competitivo.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="site-nav">
+    <div class="container nav-inner">
+        <a href="index.html" class="nav-logo">TIK<span>TAK</span></a>
+        <div class="nav-links">
+            <a href="#features">Características</a>
+            <a href="#wildcards">Comodines</a>
+            <a href="#ranks">Rangos</a>
+            <a href="#community">Comunidad</a>
+            <a href="soporte.html" class="btn btn-nav">Soporte</a>
+        </div>
+        <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<header class="hero" id="home">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow hero-glow-left"></div>
+    <div class="hero-glow hero-glow-right"></div>
+
+    <div class="container hero-content">
+        <div class="hero-text">
+            <div class="hero-badge"><i class="fas fa-bolt"></i> Multijugador en Tiempo Real</div>
+            <h1 class="glitch-text" data-text="GRIDWAR">GRIDWAR</h1>
+            <p class="subtitle">El Tres en Raya más intenso jamás creado.</p>
+            <p class="description">Transforma el clásico juego de lápiz y papel en una batalla competitiva online con comodines, rangos y consecuencias reales.</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary"><i class="fab fa-google-play"></i> Descargar Gratis</a>
+                <a href="#features" class="btn btn-secondary">Ver Características</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat"><span class="stat-num">8</span><span class="stat-label">Comodines</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat"><span class="stat-num">7</span><span class="stat-label">Rangos</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat"><span class="stat-num">16</span><span class="stat-label">Jugadores/Torneo</span></div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-header">
+                        <span class="phone-rank">⚡ Leyenda</span>
+                        <span class="phone-timer">0:24</span>
+                    </div>
+                    <div class="tic-tac-toe-board">
+                        <div class="cell x">X</div><div class="cell"></div><div class="cell o">O</div>
+                        <div class="cell"></div><div class="cell x">X</div><div class="cell"></div>
+                        <div class="cell o">O</div><div class="cell"></div><div class="cell x">X</div>
+                    </div>
+                    <div class="phone-wildcards">
+                        <span class="wc-chip">❄️</span>
+                        <span class="wc-chip active">🛡️</span>
+                        <span class="wc-chip">⚡</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     FEATURES
+══════════════════════════════════════ -->
+<section id="features" class="section">
+    <div class="container">
+        <div class="section-header text-center">
+            <div class="section-label"><i class="fas fa-gamepad"></i> Jugabilidad</div>
+            <h2 class="section-title">Más que Tres en Raya</h2>
+            <p class="section-desc">GRIDWAR combina la familiaridad del juego clásico con capas de estrategia, presión y competencia real.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Tiempo Real</h3>
+                <p>Partidas contra jugadores reales de todo el mundo. Turnos de 30 segundos. Al mejor de 3 rondas. Sin bots, pura habilidad.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                <h3>8 Comodines Únicos</h3>
+                <p>Congela al rival, teletranspórtate, lanza un terremoto o activa tu escudo. Cada comodín cambia el rumbo de la partida.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Clasificación Competitiva</h3>
+                <p>Sube a través de 7 rangos desde Novato hasta Leyenda. Tu posición es visible para todos los jugadores en tiempo real.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-crown"></i></div>
+                <h3>Torneos</h3>
+                <p>Eliminación directa con hasta 16 jugadores. Compite por gemas y prestigio permanente en torneos globales o locales.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                <h3>Misiones Diarias</h3>
+                <p>Desafíos que se renuevan cada 24 horas. Completa objetivos, desbloquea logros y acumula gemas para la tienda.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                <h3>Global y Local</h3>
+                <p>Juega contra cualquiera en el mundo o compite en modo local contra jugadores en tu misma red WiFi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     WILDCARDS
+══════════════════════════════════════ -->
+<section id="wildcards" class="section dark-bg">
+    <div class="container">
+        <div class="showcase-layout">
+            <div class="showcase-text">
+                <div class="section-label"><i class="fas fa-bolt"></i> Comodines</div>
+                <h2 class="section-title">Cambia el Juego</h2>
+                <p>No es solo colocar X o O. Administra tus recursos, lee al oponente y sorpréndelo con habilidades que alteran el tablero por completo.</p>
+                <div class="wc-list">
+                    <div class="wc-row"><span class="wc-icon">❄️</span><div><strong>Congelar</strong><span>Salta el turno del rival</span></div></div>
+                    <div class="wc-row"><span class="wc-icon">🌋</span><div><strong>Terremoto</strong><span>Desordena las fichas enemigas</span></div></div>
+                    <div class="wc-row"><span class="wc-icon">🛡️</span><div><strong>Escudo</strong><span>Bloquea comodines del oponente</span></div></div>
+                    <div class="wc-row"><span class="wc-icon">✨</span><div><strong>Teletransporte</strong><span>Mueve tu ficha a cualquier posición</span></div></div>
+                    <div class="wc-row"><span class="wc-icon">🎯</span><div><strong>Sabotaje</strong><span>Reubica la última jugada rival</span></div></div>
+                    <div class="wc-row"><span class="wc-icon">🌀</span><div><strong>Confusión</strong><span>Invierte la vista del tablero enemigo</span></div></div>
+                    <div class="wc-row"><span class="wc-icon">⚡</span><div><strong>Turbo</strong><span>Reinicia tu temporizador a 30s</span></div></div>
+                    <div class="wc-row"><span class="wc-icon">⏳</span><div><strong>Reductor</strong><span>Baja el tiempo rival a 15 segundos</span></div></div>
+                </div>
+            </div>
+            <div class="showcase-visual">
+                <div class="wc-big-grid">
+                    <div class="wc-big-item" style="animation-delay:0s">❄️</div>
+                    <div class="wc-big-item" style="animation-delay:0.4s">🌋</div>
+                    <div class="wc-big-item" style="animation-delay:0.8s">🛡️</div>
+                    <div class="wc-big-item" style="animation-delay:1.2s">✨</div>
+                    <div class="wc-big-item" style="animation-delay:1.6s">🎯</div>
+                    <div class="wc-big-item" style="animation-delay:2.0s">🌀</div>
+                    <div class="wc-big-item" style="animation-delay:2.4s">⚡</div>
+                    <div class="wc-big-item" style="animation-delay:2.8s">⏳</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     RANKS
+══════════════════════════════════════ -->
+<section id="ranks" class="section">
+    <div class="container">
+        <div class="section-header text-center">
+            <div class="section-label"><i class="fas fa-trophy"></i> Clasificación</div>
+            <h2 class="section-title">7 Rangos. Un Destino.</h2>
+            <p class="section-desc">Tu rango es visible para todos. Cada victoria te acerca a la cima.</p>
+        </div>
+        <div class="ranks-track">
+            <div class="rank-item">
+                <div class="rank-badge r1">🥉</div>
+                <span>Novato</span>
+            </div>
+            <div class="rank-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="rank-item">
+                <div class="rank-badge r2">🟤</div>
+                <span>Bronce</span>
+            </div>
+            <div class="rank-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="rank-item">
+                <div class="rank-badge r3">⚪</div>
+                <span>Plata</span>
+            </div>
+            <div class="rank-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="rank-item">
+                <div class="rank-badge r4">🥇</div>
+                <span>Oro</span>
+            </div>
+            <div class="rank-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="rank-item">
+                <div class="rank-badge r5">💎</div>
+                <span>Diamante</span>
+            </div>
+            <div class="rank-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="rank-item">
+                <div class="rank-badge r6">👑</div>
+                <span>Maestro</span>
+            </div>
+            <div class="rank-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="rank-item highlight">
+                <div class="rank-badge r7">⚡</div>
+                <span>Leyenda</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONSEQUENCES
+══════════════════════════════════════ -->
+<section class="section dark-bg consequences-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <div class="section-label"><i class="fas fa-gavel"></i> Sistema de Consecuencias</div>
+            <h2 class="section-title">GRIDWAR No Perdona</h2>
+            <p class="section-desc">Cada decisión tiene un precio. El compromiso y la deportividad son obligatorios.</p>
+        </div>
+        <div class="consequences-grid">
+            <div class="cons-card danger">
+                <div class="cons-icon">💀</div>
+                <h3>Perder una partida</h3>
+                <p>3 horas bloqueado para iniciar nuevos retos. Analiza tu estrategia antes de volver.</p>
+            </div>
+            <div class="cons-card warning">
+                <div class="cons-icon">🚫</div>
+                <h3>Rechazar un reto</h3>
+                <p>-50 puntos de rango y 30 minutos de bloqueo. Acepta los retos o paga las consecuencias.</p>
+            </div>
+            <div class="cons-card shame">
+                <div class="cons-icon">💩</div>
+                <h3>Salón de la Vergüenza</h3>
+                <p>Los peores perdedores son exhibidos públicamente. Tu nombre quedará grabado para todos.</p>
+            </div>
+            <div class="cons-card success">
+                <div class="cons-icon">🏆</div>
+                <h3>Ganar consistentemente</h3>
+                <p>Sube de rango, acumula gemas y entra al Salón de la Fama. La dedicación tiene recompensa.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     COMMUNITY
+══════════════════════════════════════ -->
+<section id="community" class="section">
+    <div class="container">
+        <div class="section-header text-center">
+            <div class="section-label"><i class="fas fa-users"></i> Comunidad</div>
+            <h2 class="section-title">Fama o Vergüenza</h2>
+            <p class="section-desc">Tu rendimiento define tu legado en GRIDWAR.</p>
+        </div>
+        <div class="hof-grid">
+            <div class="hof-card fame">
+                <div class="hof-icon">⭐</div>
+                <h3>Salón de la Fama</h3>
+                <p>Los mejores estrategas del mundo reciben el reconocimiento que merecen. Los jugadores de rango Leyenda y Maestro con mayor racha de victorias ocupan este lugar de honor.</p>
+                <div class="hof-tag fame-tag">Acceso exclusivo: Leyenda &amp; Maestro</div>
+            </div>
+            <div class="hof-card shame">
+                <div class="hof-icon">💀</div>
+                <h3>Salón de la Vergüenza</h3>
+                <p>Los jugadores que abandonan partidas, rechazan retos constantemente o acumulan derrotas sin mejorar son exhibidos públicamente. La comunidad sabrá quiénes son.</p>
+                <div class="hof-tag shame-tag">Consecuencia por mal comportamiento</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     DOWNLOAD CTA
+══════════════════════════════════════ -->
+<section id="download" class="section cta-section text-center">
+    <div class="cta-glow"></div>
+    <div class="container" style="position:relative;z-index:2;">
+        <div class="section-label" style="justify-content:center;"><i class="fas fa-download"></i> Disponible Ahora</div>
+        <h2 class="glitch-text" data-text="¿Aceptas el Reto?">¿Aceptas el Reto?</h2>
+        <p style="color:var(--text-muted);font-size:1.1rem;max-width:500px;margin:20px auto 40px;">Descarga GRIDWAR y descubre que el Tres en Raya puede ser mucho más profundo de lo que imaginabas.</p>
+        <div class="store-buttons">
+            <a href="#" class="store-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Consíguelo en Google Play">
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">TIK<span>TAK</span></div>
+            <p>El Tres en Raya más intenso jamás creado.</p>
+        </div>
+        <nav class="legal-nav">
+            <a href="privacy.html">Privacidad</a>
+            <a href="terminos.html">Términos</a>
+            <a href="soporte.html">Soporte</a>
+        </nav>
+        <p class="footer-copy">&copy; 2026 GRIDWAR. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', function() {
+        document.querySelector('.nav-links').classList.toggle('open');
+    });
+    // Sticky nav shadow on scroll
+    window.addEventListener('scroll', function() {
+        document.querySelector('.site-nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+</body>
+</html>
