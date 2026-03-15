@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte | GRIDWAR</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ─── HERO DE SOPORTE ─── */
+        .support-hero {
+            min-height: 38vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 100px 20px 60px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255,0,85,0.18) 0%, var(--darker-bg) 70%);
+            overflow: hidden;
+        }
+
+        .support-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz4KPC9zdmc+') repeat;
+        }
+
+        .support-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 0, 85, 0.15);
+            border: 1px solid rgba(255, 0, 85, 0.4);
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        .support-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .support-hero h1 span {
+            color: var(--secondary-color);
+            text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+        }
+
+        .support-hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ─── BARRA DE NAVEGACIÓN INTERNA ─── */
+        .support-nav {
+            background: var(--card-bg);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .support-nav-inner {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .support-nav-inner::-webkit-scrollbar { display: none; }
+
+        .support-nav-inner a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 24px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .support-nav-inner a:hover {
+            color: #fff;
+            border-bottom-color: var(--secondary-color);
+        }
+
+        /* ─── SECCIÓN GENERAL ─── */
+        .support-section {
+            padding: 80px 0;
+        }
+
+        .support-section + .support-section {
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+
+        .support-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .support-section .lead {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-bottom: 50px;
+        }
+
+        /* ─── TARJETAS FAQ ─── */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .faq-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .faq-card:hover {
+            border-color: rgba(0, 240, 255, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .faq-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 28px;
+            cursor: pointer;
+        }
+
+        .faq-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .faq-icon.red   { background: rgba(255,0,85,0.15);   color: var(--primary-color); }
+        .faq-icon.cyan  { background: rgba(0,240,255,0.12);  color: var(--secondary-color); }
+        .faq-icon.gold  { background: rgba(255,183,0,0.12);  color: var(--warning); }
+        .faq-icon.green { background: rgba(0,255,102,0.12);  color: var(--success); }
+
+        .faq-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .faq-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ─── COMODINES ─── */
+        .wildcards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .wc-support-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 22px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .wc-support-card:hover {
+            border-color: rgba(255,0,85,0.3);
+            background: rgba(255,0,85,0.05);
+            transform: translateY(-3px);
+        }
+
+        .wc-emoji {
+            font-size: 2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .wc-support-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--secondary-color);
+        }
+
+        .wc-support-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ─── SISTEMA DE CONSECUENCIAS ─── */
+        .consequences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .consequence-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            border-left: 4px solid transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .consequence-card:hover { transform: translateY(-4px); }
+        .consequence-card.danger { border-left-color: var(--danger); }
+        .consequence-card.warning { border-left-color: var(--warning); }
+        .consequence-card.success { border-left-color: var(--success); }
+
+        .consequence-card .c-icon {
+            font-size: 2rem;
+            margin-bottom: 14px;
+        }
+
+        .consequence-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .consequence-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .consequence-card .penalty-tag {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .danger .penalty-tag  { background: rgba(255,0,85,0.15);   color: var(--danger); }
+        .warning .penalty-tag { background: rgba(255,183,0,0.15);  color: var(--warning); }
+        .success .penalty-tag { background: rgba(0,255,102,0.12);  color: var(--success); }
+
+        /* ─── RANGOS ─── */
+        .ranks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 520px;
+        }
+
+        .rank-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 16px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .rank-row:hover {
+            border-color: rgba(0,240,255,0.2);
+            transform: translateX(6px);
+        }
+
+        .rank-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .rank-emoji { font-size: 1.6rem; flex-shrink: 0; }
+
+        .rank-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .rank-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* ─── CONTACTO ─── */
+        .contact-block {
+            background: linear-gradient(135deg, rgba(0,240,255,0.06), rgba(255,0,85,0.06));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 60px 50px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-block .contact-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(0,240,255,0.1);
+            border: 2px solid rgba(0,240,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin: 0 auto 24px;
+        }
+
+        .contact-block h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .contact-block p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .email-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 40px;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .email-pill:hover {
+            background: rgba(0,240,255,0.1);
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .email-pill i { color: var(--secondary-color); }
+
+        .response-time {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .response-time i { color: var(--success); }
+
+        /* ─── FOOTER ─── */
+        .support-footer {
+            padding: 40px 0;
+            background: var(--darker-bg);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .support-footer .legal-nav {
+            margin-bottom: 20px;
+        }
+
+        .support-footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .contact-block { padding: 40px 24px; }
+            .support-nav-inner a { padding: 14px 16px; font-size: 0.78rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="support-hero">
+        <div style="position:relative;z-index:2;">
+            <div class="support-hero-badge">
+                <i class="fas fa-headset"></i> Centro de Soporte
+            </div>
+            <h1>¿Necesitas <span>ayuda</span>?</h1>
+            <p>Estamos aquí para que vuelvas a la arena lo antes posible. Encuentra respuestas rápidas o contáctanos directamente.</p>
+        </div>
+    </section>
+
+    <!-- ═══ NAV INTERNA ═══ -->
+    <nav class="support-nav">
+        <div class="support-nav-inner">
+            <a href="#faq"><i class="fas fa-circle-question"></i> Preguntas Frecuentes</a>
+            <a href="#comodines"><i class="fas fa-bolt"></i> Comodines</a>
+            <a href="#consecuencias"><i class="fas fa-gavel"></i> Consecuencias</a>
+            <a href="#rangos"><i class="fas fa-trophy"></i> Rangos</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        </div>
+    </nav>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="support-section" id="faq">
+        <div class="container">
+            <div class="section-label"><i class="fas fa-circle-question"></i> Preguntas Frecuentes</div>
+            <h2>Problemas Comunes</h2>
+            <p class="lead">Respuestas rápidas a los problemas más reportados por la comunidad GRIDWAR.</p>
+
+            <div class="faq-grid">
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon red"><i class="fas fa-ban"></i></div>
+                        <div>
+                            <h3>Penalización por desconexión involuntaria</h3>
+                            <p>Si recibiste un bloqueo de 3 horas por una caída de red que no fue tu culpa, envíanos un correo con tu <strong>ID de Jugador</strong> y la <strong>hora exacta del incidente</strong>. Revisaremos los logs del servidor y, de confirmarse, revertiremos la sanción.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon gold"><i class="fas fa-gem"></i></div>
+                        <div>
+                            <h3>Mis gemas no aparecen después de una compra</h3>
+                            <p>Las transacciones pueden tardar <strong>hasta 10 minutos</strong> en reflejarse. Si pasado ese tiempo el saldo sigue sin actualizarse, contáctanos con el comprobante de pago y tu ID de Jugador.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon cyan"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <h3>Un comodín no funcionó correctamente</h3>
+                            <p>Si un comodín no tuvo el efecto esperado (por ejemplo, <em>Escudo</em> no bloqueó un ataque), indica el comodín usado, el turno en que ocurrió y el ID de la partida. Investigaremos el comportamiento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon green"><i class="fas fa-trophy"></i></div>
+                        <div>
+                            <h3>Mi rango no subió tras ganar</h3>
+                            <p>El rango se actualiza al finalizar la partida completa (mejor de 3 rondas). Si ganaste el match y tu rango no cambió, espera unos minutos y recarga. Si persiste, repórtalo con el ID de partida.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon red"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h3>El temporizador de 30 segundos se agotó sin que yo actuara</h3>
+                            <p>Puede deberse a latencia alta. Asegúrate de tener una conexión estable. El comodín <strong>Turbo</strong> reinicia tu temporizador a 30 segundos si lo necesitas en partida.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon gold"><i class="fas fa-medal"></i></div>
+                        <div>
+                            <h3>No aparezco en el Salón de la Fama</h3>
+                            <p>El Salón de la Fama se actualiza periódicamente. Si cumples los requisitos de puntuación y no apareces tras 24 horas, contáctanos con tu nombre de usuario.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon cyan"><i class="fas fa-wifi"></i></div>
+                        <div>
+                            <h3>No encuentro partidas en Modo Global</h3>
+                            <p>Verifica tu conexión a internet. Si el problema persiste, prueba cerrar y volver a abrir la aplicación. En horas de baja actividad puede haber mayor tiempo de espera.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon green"><i class="fas fa-star"></i></div>
+                        <div>
+                            <h3>¿Cómo completo las misiones diarias?</h3>
+                            <p>Las misiones se renuevan cada 24 horas. Participa en partidas, usa comodines y gana rondas para completarlas. Las recompensas en gemas se acreditan automáticamente al cumplir cada objetivo.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ COMODINES ═══ -->
+    <section class="support-section dark-bg" id="comodines">
+        <div class="container">
+            <div class="section-label"><i class="fas fa-bolt"></i> Comodines</div>
+            <h2>Guía de Wildcards</h2>
+            <p class="lead">GRIDWAR cuenta con 8 comodines que cambian radicalmente el flujo de cada partida. Aquí encontrarás cómo funciona cada uno.</p>
+
+            <div class="wildcards-grid">
+                <div class="wc-support-card">
+                    <div class="wc-emoji">❄️</div>
+                    <div>
+                        <h4>Congelar</h4>
+                        <p>Salta el turno del rival. Úsalo cuando el oponente esté a punto de completar una línea ganadora.</p>
+                    </div>
+                </div>
+                <div class="wc-support-card">
+                    <div class="wc-emoji">✨</div>
+                    <div>
+                        <h4>Teletransporte</h4>
+                        <p>Mueve tu ficha a cualquier posición libre del tablero. Ideal para crear jugadas sorpresa.</p>
+                    </div>
+                </div>
+                <div class="wc-support-card">
+                    <div class="wc-emoji">🛡️</div>
+                    <div>
+                        <h4>Escudo</h4>
+                        <p>Bloquea el uso de comodines enemigos durante un turno. Protección perfecta en momentos críticos.</p>
+                    </div>
+                </div>
+                <div class="wc-support-card">
+                    <div class="wc-emoji">🌋</div>
+                    <div>
+                        <h4>Terremoto</h4>
+                        <p>Desordena completamente las fichas del rival en el tablero. Rompe cualquier estrategia en construcción.</p>
+                    </div>
+                </div>
+                <div class="wc-support-card">
+                    <div class="wc-emoji">🎯</div>
+                    <div>
+                        <h4>Sabotaje</h4>
+                        <p>Reubica la última jugada hecha por el oponente. Anula su movimiento más reciente.</p>
+                    </div>
+                </div>
+                <div class="wc-support-card">
+                    <div class="wc-emoji">🌀</div>
+                    <div>
+                        <h4>Confusión</h4>
+                        <p>Invierte la vista del tablero del enemigo. Lo que ve el rival queda espejado, dificultando su orientación.</p>
+                    </div>
+                </div>
+                <div class="wc-support-card">
+                    <div class="wc-emoji">⚡</div>
+                    <div>
+                        <h4>Turbo</h4>
+                        <p>Reinicia tu propio temporizador a 30 segundos. Gana tiempo extra cuando más lo necesitas.</p>
+                    </div>
+                </div>
+                <div class="wc-support-card">
+                    <div class="wc-emoji">⏳</div>
+                    <div>
+                        <h4>Reductor de Tiempo</h4>
+                        <p>Reduce el temporizador del rival a 15 segundos. Presiona al oponente para que cometa errores.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONSECUENCIAS ═══ -->
+    <section class="support-section" id="consecuencias">
+        <div class="container">
+            <div class="section-label"><i class="fas fa-gavel"></i> Sistema de Consecuencias</div>
+            <h2>GRIDWAR No Perdona</h2>
+            <p class="lead">El sistema de justicia interna de GRIDWAR promueve el compromiso y la deportividad. Conoce las reglas antes de entrar a la arena.</p>
+
+            <div class="consequences-grid">
+                <div class="consequence-card danger">
+                    <div class="c-icon">💀</div>
+                    <h3>Perder una partida</h3>
+                    <p>Al perder un match completo (mejor de 3 rondas), quedarás bloqueado para iniciar nuevos retos durante un período de espera. Usa ese tiempo para analizar tu estrategia.</p>
+                    <span class="penalty-tag">3 horas de bloqueo</span>
+                </div>
+                <div class="consequence-card warning">
+                    <div class="c-icon">🚫</div>
+                    <h3>Rechazar un reto</h3>
+                    <p>Si recibes un reto y lo rechazas, se aplicará una penalización de puntos y un bloqueo temporal. GRIDWAR valora el espíritu competitivo y el respeto al rival.</p>
+                    <span class="penalty-tag">-50 pts + 30 min de bloqueo</span>
+                </div>
+                <div class="consequence-card success">
+                    <div class="c-icon">🏆</div>
+                    <h3>Ganar consistentemente</h3>
+                    <p>Las victorias acumuladas elevan tu rango, te dan acceso al Salón de la Fama y te recompensan con gemas. La dedicación tiene su recompensa en GRIDWAR.</p>
+                    <span class="penalty-tag">Gemas + subida de rango</span>
+                </div>
+            </div>
+
+            <div style="margin-top:30px; background: rgba(255,183,0,0.07); border:1px solid rgba(255,183,0,0.2); border-radius:14px; padding:24px 28px; display:flex; align-items:flex-start; gap:16px;">
+                <i class="fas fa-triangle-exclamation" style="color:var(--warning); font-size:1.4rem; margin-top:2px; flex-shrink:0;"></i>
+                <div>
+                    <strong style="color:var(--warning);">Penalización por desconexión involuntaria</strong>
+                    <p style="color:var(--text-muted); font-size:0.9rem; margin:6px 0 0;">Si recibiste una penalización de 3 horas por una caída de red que no fue tu culpa, contáctanos con tu ID de Jugador y la hora del incidente. Revisaremos el caso y, de confirmarse, revertiremos la sanción.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ RANGOS ═══ -->
+    <section class="support-section dark-bg" id="rangos">
+        <div class="container">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+                <div>
+                    <div class="section-label"><i class="fas fa-trophy"></i> Clasificación</div>
+                    <h2>Sistema de Rangos</h2>
+                    <p class="lead">Tu rango es visible para todos los jugadores. Progresa desde Novato hasta convertirte en una Leyenda de GRIDWAR.</p>
+
+                    <div class="ranks-list">
+                        <div class="rank-row">
+                            <div class="rank-num">1</div>
+                            <div class="rank-emoji">🥉</div>
+                            <div class="rank-name">Novato</div>
+                            <div class="rank-desc">Punto de partida</div>
+                        </div>
+                        <div class="rank-row">
+                            <div class="rank-num">2</div>
+                            <div class="rank-emoji">🟤</div>
+                            <div class="rank-name">Bronce</div>
+                            <div class="rank-desc">Primeros pasos</div>
+                        </div>
+                        <div class="rank-row">
+                            <div class="rank-num">3</div>
+                            <div class="rank-emoji">⚪</div>
+                            <div class="rank-name">Plata</div>
+                            <div class="rank-desc">Competidor sólido</div>
+                        </div>
+                        <div class="rank-row">
+                            <div class="rank-num">4</div>
+                            <div class="rank-emoji">🥇</div>
+                            <div class="rank-name">Oro</div>
+                            <div class="rank-desc">Estratega avanzado</div>
+                        </div>
+                        <div class="rank-row">
+                            <div class="rank-num">5</div>
+                            <div class="rank-emoji">💎</div>
+                            <div class="rank-name">Diamante</div>
+                            <div class="rank-desc">Élite del juego</div>
+                        </div>
+                        <div class="rank-row">
+                            <div class="rank-num">6</div>
+                            <div class="rank-emoji">👑</div>
+                            <div class="rank-name">Maestro</div>
+                            <div class="rank-desc">Dominio total</div>
+                        </div>
+                        <div class="rank-row">
+                            <div class="rank-num">7</div>
+                            <div class="rank-emoji">⚡</div>
+                            <div class="rank-name">Leyenda</div>
+                            <div class="rank-desc">El pináculo de GRIDWAR</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="section-label"><i class="fas fa-coins"></i> Economía</div>
+                    <h2>Gemas y Tienda</h2>
+                    <p class="lead">Las gemas son la moneda de GRIDWAR. Gánalas jugando y gástalas para personalizar tu experiencia.</p>
+
+                    <div style="display:flex; flex-direction:column; gap:14px;">
+                        <div style="background:var(--card-bg); border-radius:14px; padding:20px 22px; border:1px solid rgba(0,255,102,0.15);">
+                            <div style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--success); margin-bottom:10px;">Cómo ganar gemas</div>
+                            <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+                                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-check" style="color:var(--success);"></i> Ganar partidas</li>
+                                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-check" style="color:var(--success);"></i> Completar misiones diarias</li>
+                                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-check" style="color:var(--success);"></i> Ganar torneos</li>
+                            </ul>
+                        </div>
+                        <div style="background:var(--card-bg); border-radius:14px; padding:20px 22px; border:1px solid rgba(255,0,85,0.15);">
+                            <div style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--primary-color); margin-bottom:10px;">En qué gastar gemas</div>
+                            <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+                                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-bolt" style="color:var(--primary-color);"></i> Nuevos comodines</li>
+                                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-palette" style="color:var(--primary-color);"></i> Cosméticos y marcos de perfil</li>
+                                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-font" style="color:var(--primary-color);"></i> Colores de nombre personalizados</li>
+                                <li style="display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-star" style="color:var(--primary-color);"></i> Mejoras visuales exclusivas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONTACTO ═══ -->
+    <section class="support-section" id="contacto">
+        <div class="container">
+            <div class="contact-block">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h2>Contáctanos</h2>
+                <p>¿No encontraste la respuesta que buscabas? Escríbenos directamente y te ayudaremos a resolver tu problema.</p>
+                <div>
+                    <a href="mailto:carlosbetancur1205@gmail.com" class="email-pill">
+                        <i class="fas fa-envelope"></i>
+                        carlosbetancur1205@gmail.com
+                    </a>
+                </div>
+                <div class="response-time">
+                    <i class="fas fa-circle-check"></i>
+                    Tiempo de respuesta estimado: 24 a 48 horas
+                </div>
+
+                <div style="margin-top:40px; padding-top:30px; border-top:1px solid rgba(255,255,255,0.06);">
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Al reportar un problema, incluye siempre:</p>
+                    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+                        <span style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:6px 16px; font-size:0.82rem; color:var(--text-muted);">🎮 ID de Jugador</span>
+                        <span style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:6px 16px; font-size:0.82rem; color:var(--text-muted);">🕐 Hora del incidente</span>
+                        <span style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:6px 16px; font-size:0.82rem; color:var(--text-muted);">📋 ID de partida (si aplica)</span>
+                        <span style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:6px 16px; font-size:0.82rem; color:var(--text-muted);">📱 Versión de la app</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="support-footer">
+        <div class="container">
+            <nav class="legal-nav">
+                <a href="index.html">Inicio</a>
+                <a href="privacy.html">Privacidad</a>
+                <a href="terminos.html">Términos</a>
+                <a href="soporte.html">Soporte</a>
+            </nav>
+            <p>&copy; 2025 GRIDWAR. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
