@@ -529,6 +529,27 @@ img { max-width: 100%; }
 .store-btn:hover img { transform: scale(1.06); }
 
 /* ══════════════════════════════════════════════
+   HERO LOGO IMAGE
+══════════════════════════════════════════════ */
+.hero-logo-img {
+    margin: 0 0 8px -12px;
+    display: block;
+}
+.hero-logo-img img {
+    width: clamp(280px, 45vw, 520px);
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 32px rgba(0,240,255,0.35)) drop-shadow(0 0 60px rgba(255,0,85,0.2));
+    animation: logo-pulse 4s ease-in-out infinite;
+    user-select: none;
+    pointer-events: none;
+}
+@keyframes logo-pulse {
+    0%, 100% { filter: drop-shadow(0 0 28px rgba(0,240,255,0.35)) drop-shadow(0 0 55px rgba(255,0,85,0.2)); }
+    50%       { filter: drop-shadow(0 0 48px rgba(0,240,255,0.65)) drop-shadow(0 0 80px rgba(255,0,85,0.4)); }
+}
+
+/* ══════════════════════════════════════════════
    ENERGY TEXT
 ══════════════════════════════════════════════ */
 .glitch-text {
