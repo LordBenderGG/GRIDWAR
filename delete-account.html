@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Cuenta — GRIDWAR</title>
+    <meta name="description" content="Solicita la eliminación de tu cuenta y datos personales de GRIDWAR.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary:    #ff0055;
+            --secondary:  #00f0ff;
+            --bg:         #0a0a0f;
+            --bg2:        #111118;
+            --card-bg:    #16161f;
+            --border:     rgba(255,255,255,0.07);
+            --text:       #e8e8f0;
+            --text-muted: #7a7a9a;
+            --font:       'Outfit', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── NAV ── */
+        .site-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10,10,15,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 64px;
+        }
+        .nav-logo {
+            font-size: 1.4rem; font-weight: 900; text-decoration: none;
+            color: #fff; letter-spacing: 1px;
+        }
+        .nav-logo span { color: var(--primary); }
+        .nav-back {
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-muted); text-decoration: none;
+            font-size: 0.9rem; font-weight: 600; transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--secondary); }
+
+        /* ── HERO ── */
+        .page-hero {
+            background: linear-gradient(135deg, rgba(255,0,85,0.08) 0%, transparent 50%, rgba(0,240,255,0.05) 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 64px 24px 48px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,0,85,0.12); border: 1px solid rgba(255,0,85,0.3);
+            color: var(--primary); font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            padding: 6px 16px; border-radius: 100px; margin-bottom: 20px;
+        }
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem); font-weight: 900;
+            color: #fff; margin-bottom: 16px;
+        }
+        .page-hero h1 span { color: var(--primary); }
+        .page-hero p {
+            color: var(--text-muted); font-size: 1.05rem;
+            max-width: 560px; margin: 0 auto; line-height: 1.7;
+        }
+
+        /* ── MAIN ── */
+        .main-content {
+            flex: 1;
+            max-width: 800px; margin: 0 auto; width: 100%;
+            padding: 48px 24px 80px;
+        }
+
+        /* ── CARDS ── */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: border-color 0.3s;
+        }
+        .card:hover { border-color: rgba(0,240,255,0.2); }
+        .card-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 20px;
+        }
+        .card-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+        .icon-red   { background: rgba(255,0,85,0.15); color: var(--primary); }
+        .icon-cyan  { background: rgba(0,240,255,0.1); color: var(--secondary); }
+        .icon-warn  { background: rgba(255,165,0,0.12); color: #ffa500; }
+        .card-header h2 { font-size: 1.15rem; font-weight: 700; color: #fff; }
+        .card p, .card li {
+            color: var(--text-muted); font-size: 0.95rem; line-height: 1.75;
+        }
+        .card ul { padding-left: 20px; }
+        .card ul li { margin-bottom: 8px; }
+        .card ul li strong { color: var(--text); }
+
+        /* ── ALERT ── */
+        .alert {
+            background: rgba(255,165,0,0.08);
+            border: 1px solid rgba(255,165,0,0.25);
+            border-radius: 12px; padding: 16px 20px;
+            display: flex; gap: 12px; align-items: flex-start;
+            margin-bottom: 24px;
+        }
+        .alert i { color: #ffa500; margin-top: 2px; flex-shrink: 0; }
+        .alert p { color: #c8a060; font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+        /* ── STEPS ── */
+        .steps { counter-reset: step; }
+        .step {
+            display: flex; gap: 16px; align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .step-num {
+            counter-increment: step;
+            width: 32px; height: 32px; border-radius: 50%;
+            background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.3);
+            color: var(--secondary); font-weight: 800; font-size: 0.85rem;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-top: 2px;
+        }
+        .step-num::before { content: counter(step); }
+        .step-body h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .step-body p  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ── EMAIL BUTTON ── */
+        .email-block {
+            background: linear-gradient(135deg, rgba(255,0,85,0.08), rgba(0,240,255,0.05));
+            border: 1px solid rgba(255,0,85,0.25);
+            border-radius: 16px; padding: 32px;
+            text-align: center; margin-bottom: 24px;
+        }
+        .email-block h2 { font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        .email-block p  { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
+        .btn-email {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--primary); color: #fff;
+            font-family: var(--font); font-weight: 700; font-size: 1rem;
+            padding: 14px 32px; border-radius: 12px; text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 24px rgba(255,0,85,0.3);
+        }
+        .btn-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 36px rgba(255,0,85,0.5);
+        }
+        .email-note {
+            margin-top: 16px; font-size: 0.82rem; color: var(--text-muted);
+        }
+        .email-note a { color: var(--secondary); text-decoration: none; }
+        .email-note a:hover { text-decoration: underline; }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+        }
+        .footer-logo { font-size: 1.1rem; font-weight: 900; color: #fff; }
+        .footer-logo span { color: var(--primary); }
+        .legal-nav { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+        .legal-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .legal-nav a:hover { color: var(--secondary); }
+        .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
+
+        @media (max-width: 600px) {
+            .card { padding: 24px 20px; }
+            .email-block { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">GRID<span>WAR</span></a>
+        <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+    <div class="hero-badge"><i class="fas fa-user-slash"></i> Gestión de cuenta</div>
+    <h1>Eliminar <span>Cuenta</span> y Datos</h1>
+    <p>Tienes el derecho de solicitar la eliminación de tu cuenta y todos los datos asociados a ella en cualquier momento.</p>
+</div>
+
+<!-- MAIN -->
+<main class="main-content">
+
+    <!-- Alerta -->
+    <div class="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p><strong>Acción irreversible.</strong> Una vez procesada tu solicitud, tu cuenta, historial de partidas, rango, gemas y todos los datos asociados serán eliminados de forma permanente y no podrán recuperarse.</p>
+    </div>
+
+    <!-- Qué se elimina -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon icon-red"><i class="fas fa-trash-alt"></i></div>
+            <h2>¿Qué datos se eliminan?</h2>
+        </div>
+        <ul>
+            <li><strong>Cuenta y perfil:</strong> nombre de usuario, foto de perfil, correo electrónico y contraseña.</li>
+            <li><strong>Progreso en el juego:</strong> rango, puntuación, historial de partidas y estadísticas.</li>
+            <li><strong>Economía virtual:</strong> gemas, comodines adquiridos y cualquier compra dentro de la app.</li>
+            <li><strong>Datos de torneos:</strong> participaciones, resultados y posiciones en el Hall of Fame.</li>
+            <li><strong>Datos de uso:</strong> registros de actividad, preferencias y configuraciones guardadas.</li>
+        </ul>
+    </div>
+
+    <!-- Qué NO se elimina -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon icon-warn"><i class="fas fa-info-circle"></i></div>
+            <h2>¿Qué datos se conservan temporalmente?</h2>
+        </div>
+        <p>Por obligaciones legales y contables, podemos conservar durante un máximo de <strong>90 días</strong> los registros de transacciones de compras realizadas a través de Google Play, exclusivamente para cumplir con normativas fiscales y de resolución de disputas. Estos datos no se usarán para ningún otro fin.</p>
+    </div>
+
+    <!-- Cómo solicitar -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon icon-cyan"><i class="fas fa-list-ol"></i></div>
+            <h2>Cómo solicitar la eliminación</h2>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num"></div>
+                <div class="step-body">
+                    <h3>Envía un correo electrónico</h3>
+                    <p>Escribe a <strong>carlosbetancur1205@gmail.com</strong> con el asunto <em>"Solicitud de eliminación de cuenta"</em>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num"></div>
+                <div class="step-body">
+                    <h3>Incluye tu información</h3>
+                    <p>Proporciona tu nombre de usuario en GRIDWAR y el correo electrónico asociado a tu cuenta para que podamos identificarla correctamente.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num"></div>
+                <div class="step-body">
+                    <h3>Indica qué deseas eliminar</h3>
+                    <p>Especifica si deseas eliminar <strong>solo tus datos</strong> (manteniendo la cuenta) o <strong>cuenta y todos los datos</strong> de forma completa.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num"></div>
+                <div class="step-body">
+                    <h3>Confirmación y procesamiento</h3>
+                    <p>Recibirás una confirmación en un plazo de <strong>48 horas</strong>. La eliminación completa se procesará en un máximo de <strong>30 días</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de contacto -->
+    <div class="email-block">
+        <h2>Solicitar eliminación ahora</h2>
+        <p>Haz clic en el botón para abrir tu cliente de correo con el asunto y destinatario ya completados.</p>
+        <a href="mailto:carlosbetancur1205@gmail.com?subject=Solicitud%20de%20eliminaci%C3%B3n%20de%20cuenta%20GRIDWAR&body=Hola%2C%0A%0ASolicito%20la%20eliminaci%C3%B3n%20de%20mi%20cuenta%20y%20datos%20en%20GRIDWAR.%0A%0ANombre%20de%20usuario%3A%20%0ACorreo%20de%20la%20cuenta%3A%20%0ATipo%20de%20solicitud%3A%20%5BEliminaci%C3%B3n%20completa%20%2F%20Solo%20datos%5D%0A%0AGracias." class="btn-email">
+            <i class="fas fa-envelope"></i> Enviar solicitud por correo
+        </a>
+        <p class="email-note">O escríbenos directamente a <a href="mailto:carlosbetancur1205@gmail.com">carlosbetancur1205@gmail.com</a></p>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">GRID<span>WAR</span></div>
+        <nav class="legal-nav">
+            <a href="index.html">Inicio</a>
+            <a href="privacy.html">Privacidad</a>
+            <a href="terminos.html">Términos</a>
+            <a href="soporte.html">Soporte</a>
+            <a href="delete-account.html">Eliminar Cuenta</a>
+        </nav>
+        <p class="footer-copy">&copy; 2026 GRIDWAR. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+</body>
+</html>
